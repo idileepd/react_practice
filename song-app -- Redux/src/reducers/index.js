@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers, createStore } from "redux";
 
 //we just get songs no actions
 const songsReducer = () => {
@@ -27,12 +27,14 @@ const selectedSongReducer = (selectedSong = null, action) => {
   if (action.type === "SONG_SELECTED") {
     return action.payload;
   }
-
   // return currently selected song
   return selectedSong;
 };
 
-export default combineReducers({
+//------------------ Create store from reducers
+export const reducers = combineReducers({
   songs: songsReducer,
   selectedSong: selectedSongReducer,
 });
+
+export const store = createStore(reducers);

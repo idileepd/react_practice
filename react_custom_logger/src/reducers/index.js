@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 
+import { createStore } from "redux";
+
 const logsList = (logs = [], action) => {
   if (action.type === "ADD_LOG") {
     return [...logs, action.payload];
@@ -7,6 +9,8 @@ const logsList = (logs = [], action) => {
   return logs;
 };
 
-export default combineReducers({
+const reducers = combineReducers({
   logsList,
 });
+
+export const store = createStore(reducers);
